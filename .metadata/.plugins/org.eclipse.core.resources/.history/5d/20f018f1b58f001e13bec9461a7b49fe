@@ -1,0 +1,5 @@
+package com.khalil.security.repos;
+
+public class RoleRepository {
+
+}

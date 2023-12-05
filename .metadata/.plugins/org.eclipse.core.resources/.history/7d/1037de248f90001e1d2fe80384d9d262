@@ -1,0 +1,9 @@
+package com.khalil.security.service;
+
+public class UserServicempl {
+
+	public UserServicempl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

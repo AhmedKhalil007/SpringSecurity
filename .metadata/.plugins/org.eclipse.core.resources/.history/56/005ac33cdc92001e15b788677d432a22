@@ -1,0 +1,40 @@
+package com.khalil.security;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.khalil.security.entities.Role;
+import com.khalil.security.entities.User;
+import com.khalil.security.service.UserService;
+
+import jakarta.annotation.PostConstruct;
+
+@SpringBootTest
+class DemoApplicationTests {
+UserService userService;
+	@Test
+	void contextLoads() {
+	}
+	@PostConstruct
+    void init_users() {
+    //ajouter les rôles
+    userService.addRole(new Role(null,"ADMIN"));
+    userService.addRole(new Role(null,"USER"));
+    //ajouter les users
+    userService.saveUser(new User(null,"admin","123",true,null));
+    userService.saveUser(new User(null, "emna","123",true,null));
+    userService.saveUser(new User(null, "mohamed","123",true,null));
+    //ajouter les rôles aux users
+    userService.addRoleToUser("admin", "ADMIN");
+    userService.addRoleToUser("admin", "USER");
+    userService.addRoleToUser("emna", "USER");
+    userService.addRoleToUser("mohamed", "USER");
+    }
+     
+    @Bean
+    BCryptPasswordEncoder getBCE() {
+    return new BCryptPasswordEncoder();
+    }
+}
